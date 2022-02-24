@@ -1,9 +1,13 @@
-import UserIndex from './components/users/index.vue';
-
 export const routes = [
     {
-        path: '/home',
-        name: 'UserIndex',
-        component: UserIndex
+        path: '/users',
+        component: require('./components/users/index.vue').default
+    },
+    {
+        path: '/profile/:id',
+        component: require('./components/users/profile.vue').default
+    },{
+        path: '/profile/:id/edit',
+        component: require('./components/users/editprofile.vue').default
     }
 ];

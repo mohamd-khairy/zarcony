@@ -49,24 +49,31 @@ class UserController extends Controller
         return $this->apiFailResponse();
     }
 
-    public function edit_profile(Request $request)
+    public function edit_profile($id, Request $request)
     {
         $v = Validator::make($request->all(), [
             'name' => 'nullable|string|min:2|max:100',
-            'email' => 'nullable|email|unique:users,email,' . auth()->user()->id,
         ]);
 
         if ($v->fails()) return $this->apiFailResponse($v->errors()->first(), 'validation error');
 
-        $user = Auth::user();
-        $user->update($request->only('name', 'email'));
+        $user = User::find($id);
+        if (!$user) {
+            return $this->apiFailResponse('not found');
+        }
+        $user->update($request->only('name', 'email', 'password'));
         return $this->apiSuccessResponse($user, 'updated successfully');
     }
 
     public function users()
     {
-        $users = User::paginate(10);
-        return $this->apiSuccessResponse(new UserCollection($users));
+        $users = User::query();
+        if (request('user_id')) {
+            $users = $users->where('id', request('user_id'))->first();
+        } else {
+            $users = $users->paginate(10);
+        }
+        return $this->apiSuccessResponse($users);
     }
 
     public function delete($id)

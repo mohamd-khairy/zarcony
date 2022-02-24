@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div id="app">
-            <router-view></router-view>
+        <div>
+            test
             <!-- <user-index></user-index> -->
             <!-- <example-component></example-component> -->
         </div>

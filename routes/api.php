@@ -23,9 +23,9 @@ Route::group([], function () {
 });
 
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group([], function () { //'middleware' => 'auth:sanctum'
     Route::post('logout', [UserController::class, 'logout']);
     Route::get('users', [UserController::class, 'users']);
-    Route::put('edit-profile', [UserController::class, 'edit_profile']);
+    Route::put('user/edit/{id}', [UserController::class, 'edit_profile']);
     Route::delete('user/{id}', [UserController::class, 'delete']);
 });

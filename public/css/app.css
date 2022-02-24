@@ -64297,3 +64297,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.router-link-exact-active {
+  background-color: red;
+  color: white;
+}

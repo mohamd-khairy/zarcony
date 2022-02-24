@@ -12,7 +12,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+    <div class="wrapper" id="app">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
@@ -52,7 +52,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item menu-open">
-                            <router-link :to="{name: 'UserIndex'}" class="nav-link active">
+                            <router-link to="/users" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Users
@@ -60,21 +60,29 @@
                                 </p>
                             </router-link>
 
-                            <a href="#" class="nav-link ">
+                            <router-link to="/profile/{{auth()->user()->id}}" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    My Profile
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </router-link>
+
+                            <router-link to="#" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Transactions
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
-                            </a>
+                            </router-link>
 
-                            <a href="#" class="nav-link ">
+                            <router-link to="#" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Logs
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
-                            </a>
+                            </router-link>
 
 
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="nav-link ">
@@ -100,21 +108,14 @@
         <div class="content-wrapper">
 
             <div class="content">
-                <div class="container-fluid">
-                    @yield('content')
+                <div class="container-fluid p-5">
+                    <router-view></router-view>
                 </div>
             </div>
 
         </div>
 
 
-        <aside class="control-sidebar control-sidebar-dark">
-
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
 
 
         <footer class="main-footer">
