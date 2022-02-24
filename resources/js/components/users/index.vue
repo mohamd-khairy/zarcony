@@ -14,7 +14,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Responsive Hover Table</h3>
+            <h3 class="card-title">All Users</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0">
@@ -31,11 +31,6 @@
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.created_at }}</td>
-                  <td>
-                    <a href="#"> edit </a>
-                    /
-                    <a href="#"> delete </a>
-                  </td>
                 </tr>
               </tbody>
             </table>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,10 @@ Route::group([], function () { //'middleware' => 'auth:sanctum'
     Route::get('users', [UserController::class, 'users']);
     Route::put('user/edit/{id}', [UserController::class, 'edit_profile']);
     Route::delete('user/{id}', [UserController::class, 'delete']);
+});
+
+
+Route::group([], function () { //'middleware' => 'auth:sanctum'
+    Route::get('payments', [PaymentController::class, 'payments']);
+    Route::post('payment/{user_id}', [PaymentController::class, 'add_payment']);
 });

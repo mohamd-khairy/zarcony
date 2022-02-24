@@ -71,7 +71,7 @@ class UserController extends Controller
         if (request('user_id')) {
             $users = $users->where('id', request('user_id'))->first();
         } else {
-            $users = $users->paginate(10);
+            $users = $users->paginate(request('page_size', 10));
         }
         return $this->apiSuccessResponse($users);
     }

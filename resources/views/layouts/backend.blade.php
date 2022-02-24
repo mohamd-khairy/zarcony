@@ -68,7 +68,7 @@
                                 </p>
                             </router-link>
 
-                            <router-link to="#" class="nav-link ">
+                            <router-link to="/payments/{{auth()->user()->id}}" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Transactions
