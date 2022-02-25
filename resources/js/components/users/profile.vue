@@ -48,7 +48,13 @@ export default {
       .get(this.baseUrl + "/api/users?user_id=" + this.$route.params.id)
       .then((data) => {
         this.user = data.data.data;
-      });
+      }) .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
+        });
   },
 };
 </script>

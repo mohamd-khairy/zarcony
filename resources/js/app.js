@@ -13,12 +13,14 @@ import VueRouter from 'vue-router';
 import { BootstrapVue } from 'bootstrap-vue'
 import { routes } from './routes';
 import Pagination from 'vue-pagination-2';
+import Toasted from 'vue-toasted'
 
 Vue.component('pagination', Pagination);
 Vue.component('login' , require('./components/login.vue').default);
 
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
+Vue.use(Toasted)
 
 const app = new Vue({
     el: '#app',

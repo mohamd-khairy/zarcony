@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,8 +47,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function ($model) {
+            LogSystem::addToLog('create user Log.', $model, 'created_user');
+        });
+        static::updated(function ($model) {
+            LogSystem::addToLog('Update user Log.', $model, 'updated_user');
+        });
+        static::deleted(function ($model) {
+            LogSystem::addToLog('delete user Log.', $model, 'deleted_user');
+        });
+    }
+
     public function setPasswordAttribute($input)
     {
         $this->attributes['password'] = $input && Hash::needsRehash($input) ? Hash::make($input) : $input;
+    }
+
+    public function getCreatedAtAttribute($input)
+    {
+        return $input ? Carbon::parse($input)->diffForHumans() : $input;
     }
 }

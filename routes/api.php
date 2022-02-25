@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -27,12 +28,9 @@ Route::group([], function () {
 Route::group([], function () { //'middleware' => 'auth:sanctum'
     Route::post('logout', [UserController::class, 'logout']);
     Route::get('users', [UserController::class, 'users']);
+    Route::get('logs', [LogController::class, 'logs']);
     Route::put('user/edit/{id}', [UserController::class, 'edit_profile']);
     Route::delete('user/{id}', [UserController::class, 'delete']);
-});
-
-
-Route::group([], function () { //'middleware' => 'auth:sanctum'
     Route::get('payments', [PaymentController::class, 'payments']);
     Route::post('payment/{user_id}', [PaymentController::class, 'add_payment']);
 });

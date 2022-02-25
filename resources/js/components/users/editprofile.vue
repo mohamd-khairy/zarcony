@@ -52,10 +52,18 @@ export default {
 
   methods: {
     async edit_user() {
-      const response = await this.form.put(
-        "/api/user/edit/" + this.$route.params.id
-      );
-      this.$router.push({ path: "/profile/" + this.$route.params.id });
+      const response = await this.form
+        .put("/api/user/edit/" + this.$route.params.id)
+        .then((data) => {
+          this.$router.push({ path: "/profile/" + this.$route.params.id });
+        })
+        .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
+        });
     },
   },
   mounted() {
@@ -64,7 +72,13 @@ export default {
       .then((data) => {
         this.form.name = data.data.data.name;
         this.form.email = data.data.data.email;
-      });
+      }) .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
+        });
   },
 };
 </script>

@@ -138,11 +138,28 @@ export default {
         console.log(data.data.data);
         this.users = data.data.data;
         this.total = data.data.data.total;
-      });
+      }) .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
+        });
     },
     async new_user() {
-      const response = await this.form.post("/api/register");
-      this.form.reset();
+      const response = await this.form
+        .post("/api/register")
+        .then((data) => {
+          this.form.reset();
+          location.reload();
+        })
+        .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
+        });
     },
   },
   mounted() {

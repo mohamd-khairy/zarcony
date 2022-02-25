@@ -13,5 +13,13 @@ export const routes = [
     {
         path: '/payments/:user_id',
         component: require('./components/transactions/index.vue').default
+    },
+    {
+        path: '/one_user_payments/:user_id',
+        component: require('./components/transactions/one_user.vue').default
+    },
+    {
+        path: '/logs/:user_id',
+        component: require('./components/logs/index.vue').default
     }
 ];

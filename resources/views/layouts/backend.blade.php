@@ -52,6 +52,8 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item menu-open">
+
+                            @if(auth()->user()->role == 'admin')
                             <router-link to="/users" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -59,7 +61,9 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </router-link>
+                            @endif
 
+                            @if(auth()->user()->role == 'user')
                             <router-link to="/profile/{{auth()->user()->id}}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -67,7 +71,20 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </router-link>
+                            @endif
 
+
+                            @if(auth()->user()->role == 'user')
+                            <router-link to="/one_user_payments/{{auth()->user()->id}}" class="nav-link ">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    My Transactions
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </router-link>
+                            @endif
+
+                            @if(auth()->user()->role == 'admin')
                             <router-link to="/payments/{{auth()->user()->id}}" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -75,14 +92,17 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </router-link>
+                            @endif
 
-                            <router-link to="#" class="nav-link ">
+                            @if(auth()->user()->role == 'admin')
+                            <router-link to="/logs/{{auth()->user()->id}}" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Logs
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </router-link>
+                            @endif
 
 
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="nav-link ">
@@ -108,7 +128,7 @@
         <div class="content-wrapper">
 
             <div class="content">
-                <div class="container-fluid p-5">
+                <div class="container-fluid pt-2">
                     <router-view></router-view>
                 </div>
             </div>

@@ -186,20 +186,44 @@ export default {
         .get(this.baseUrl + "/api/users?page_size=" + page_size)
         .then((data) => {
           this.users = data.data.data.data;
+        })
+        .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
         });
     },
     getResults(page = 1) {
-      axios.get(this.baseUrl + "/api/payments?page=" + page).then((data) => {
-        this.payments = data.data.data.data;
-        this.total = data.data.data.total;
-      });
+      axios
+        .get(this.baseUrl + "/api/payments?page=" + page)
+        .then((data) => {
+          this.payments = data.data.data.data;
+          this.total = data.data.data.total;
+        })
+        .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
+        });
     },
     async new_payment() {
-      const response = await this.form.post(
-        this.baseUrl + "/api/payment/" + this.$route.params.user_id
-      );
-      this.form.reset();
-      location.reload();
+      const response = await this.form
+        .post(this.baseUrl + "/api/payment/" + this.$route.params.user_id)
+        .then((data) => {
+          this.form.reset();
+          location.reload();
+        })
+        .catch((error) => {
+          this.$toasted.show(error.response.data.message, {
+            theme: "warning",
+            position: "top-right",
+            duration: 10000,
+          });
+        });
     },
   },
   mounted() {
