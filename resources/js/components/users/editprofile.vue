@@ -42,7 +42,7 @@
 import Form from "vform";
 export default {
   data: () => ({
-    baseUrl: "http://zarcony.test",
+    baseUrl: "http://infinite-coast-03874.herokuapp.com",
     form: new Form({
       name: "",
       email: "",

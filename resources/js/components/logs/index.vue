@@ -55,7 +55,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
-    baseUrl: "http://zarcony.test",
+    baseUrl: "http://infinite-coast-03874.herokuapp.com",
     total: 0,
     page: 1,
     logs: {},
